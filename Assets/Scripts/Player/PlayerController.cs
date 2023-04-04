@@ -17,13 +17,18 @@ public class PlayerController : MonoBehaviour
     //parameters
     [SerializeField] private float movement_force = 1.0f;
     [SerializeField] private float jump_force = 5.0f;
-    [SerializeField] private float max_speed = 5.0f;
+    [SerializeField] private float start_speed = 5.0f;
+    public float max_speed = 5.0f;
 
     private Vector3 force_direction = Vector3.zero;
 
     [SerializeField] private Camera playerCamera;
     private Animator animator;
     public FollowCamera followCamera;
+    public bool speedPickedUp;
+    public float currentSpeedTime = 0f;
+    public float startingSpeedTime = 5f;
+    public float boosted_speed = 10.0f;
 
     private void Awake()
     {
@@ -32,6 +37,9 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
         followCamera = cam.GetComponent<FollowCamera>();
+        max_speed = start_speed;
+        currentSpeedTime = startingSpeedTime;
+        speedPickedUp = false;
     }
 
     private void OnEnable()
@@ -80,6 +88,22 @@ public class PlayerController : MonoBehaviour
         }
 
         LookAt();
+        HandleSpeedTimer();
+    }
+
+    private void HandleSpeedTimer()
+    {
+        if(speedPickedUp)
+        {
+            currentSpeedTime -= 1 * Time.deltaTime;
+            Debug.Log(currentSpeedTime);
+
+            if (currentSpeedTime <= 0)
+            {
+                max_speed = start_speed;
+                speedPickedUp = false;
+            }
+        }
     }
     
     private void LookAt()
