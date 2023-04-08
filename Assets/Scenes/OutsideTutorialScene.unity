@@ -11619,6 +11619,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 1372113448}
     m_Modifications:
+    - target: {fileID: 30906398025358529, guid: de7790c7607a35149a81731896a0405f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1100422631041317637, guid: de7790c7607a35149a81731896a0405f,
         type: 3}
       propertyPath: m_Layer
@@ -11629,10 +11634,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6655267273102412767, guid: de7790c7607a35149a81731896a0405f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6795158225397203845, guid: de7790c7607a35149a81731896a0405f,
         type: 3}
       propertyPath: m_Name
       value: Field
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804246326237158847, guid: de7790c7607a35149a81731896a0405f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8266508094208811263, guid: de7790c7607a35149a81731896a0405f,
         type: 3}
@@ -12825,3 +12840,74 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: b446042cb5f9d5b44b3f2c27fcbdad20, type: 3}
+--- !u!1001 &3015014149477981850
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 702681302313976207, guid: 88703b1eb9ac56e4f97540e30f0ced5a,
+        type: 3}
+      propertyPath: m_Name
+      value: Barn
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061014932200478788, guid: 88703b1eb9ac56e4f97540e30f0ced5a,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061014932200478788, guid: 88703b1eb9ac56e4f97540e30f0ced5a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -232.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061014932200478788, guid: 88703b1eb9ac56e4f97540e30f0ced5a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -23.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061014932200478788, guid: 88703b1eb9ac56e4f97540e30f0ced5a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -15.347
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061014932200478788, guid: 88703b1eb9ac56e4f97540e30f0ced5a,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061014932200478788, guid: 88703b1eb9ac56e4f97540e30f0ced5a,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061014932200478788, guid: 88703b1eb9ac56e4f97540e30f0ced5a,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061014932200478788, guid: 88703b1eb9ac56e4f97540e30f0ced5a,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061014932200478788, guid: 88703b1eb9ac56e4f97540e30f0ced5a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061014932200478788, guid: 88703b1eb9ac56e4f97540e30f0ced5a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061014932200478788, guid: 88703b1eb9ac56e4f97540e30f0ced5a,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: 88703b1eb9ac56e4f97540e30f0ced5a, type: 3}
