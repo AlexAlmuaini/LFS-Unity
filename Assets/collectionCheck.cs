@@ -12,6 +12,7 @@ public class collectionCheck : MonoBehaviour
     private void Update()
     {
         globalStuff.tnt_collected = tnt_collected;
+        globalStuff.wire_collected = wire_collected;
         if(globalStuff.tnt_collected)
         {
             tnt_pile.SetActive(true);
