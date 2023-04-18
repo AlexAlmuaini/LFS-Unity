@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PowerAbilityScene.unity
     guid: ccf4bf4d0ab13134aa8132899ef2603d
+  - enabled: 1
+    path: Assets/Scenes/Barn.unity
+    guid: ac413a30708b5414cab01e3c68ccc759
+  - enabled: 1
+    path: Assets/Scenes/SplineScene.unity
+    guid: c0868ee1f31b381469820abeb48ccd5e
   m_configObjects: {}
