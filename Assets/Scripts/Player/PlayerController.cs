@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
     public float currentSpeedTime = 0f;
     public float startingSpeedTime = 5f;
     public float boosted_speed = 10.0f;
+    public float jumps = 2.0f;
+
+    DoubleJumpManager doubleJumpManager;
 
     private void Awake()
     {
@@ -36,6 +39,7 @@ public class PlayerController : MonoBehaviour
         actions = new Input();
         animator = GetComponent<Animator>();
         GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+        doubleJumpManager = FindObjectOfType<DoubleJumpManager>();
         followCamera = cam.GetComponent<FollowCamera>();
         max_speed = start_speed;
         currentSpeedTime = startingSpeedTime;
@@ -140,7 +144,17 @@ public class PlayerController : MonoBehaviour
         if (IsGrounded())
         {
             force_direction += Vector3.up * jump_force;
+            jumps--;
         }
+
+        if(!IsGrounded() && doubleJumpManager.canDoubleJump == true)
+                {
+                    if(jumps == 1)
+                    {
+                        force_direction += Vector3.up * jump_force;
+                        jumps--;
+                    }
+                }
         animator.SetTrigger("Jump");
     }
 
