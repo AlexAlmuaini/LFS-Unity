@@ -14,10 +14,8 @@ public class TestingSplinesScript : MonoBehaviour
     [SerializeField] private Transform pointC;
     [SerializeField] private Transform pointD;
     [SerializeField] private Transform pointABCD;
+    [SerializeField] private Transform player;
     public bool splineCam;
-    private float speed = 0.25f;
-    private float timePassed = 0;
-    
     // Start is called before the first frame update
     void Awake()
     {
@@ -28,24 +26,13 @@ public class TestingSplinesScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timePassed > 4)
-        {speed*= -1;
-        timePassed = 0;}
-        timePassed +=Time.deltaTime;
-        interpolateAmount = (interpolateAmount + speed * Time.deltaTime);
-
-        pointABCD.position = CubicLerp(pointA.position, pointB.position, pointC.position, pointD.position, interpolateAmount);
-
-        if(splineCam)
-        {
         //inverse lerp to get the players x position in relation to the start and finish then devide it over the finish
         //to get the percentage for the interpolateAmount.
-        //interpolateAmount = InverseLerp(pointA.position, pointD.position, playerMovement.transform.position);
+        interpolateAmount = InverseLerp(pointA.position, pointD.position, player.position);
 
         //Interpolates between 4 points using 2 functions, the first interpolates a-b & b-c and then interpolates between them
         // to get a-b-c then interpolates between a-b-c & b-c-d
         pointABCD.position = CubicLerp(pointA.position, pointB.position, pointC.position, pointD.position, interpolateAmount);
-        }
     }
 
     public static float InverseLerp(Vector3 a, Vector3 b, Vector3 value)
