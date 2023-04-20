@@ -2553,7 +2553,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 538096273}
     - target: {fileID: 3728749820611307571, guid: 76bc8c33559a1574ba3bf30ae3faa273,
         type: 3}
       propertyPath: transition
@@ -3946,6 +3946,12 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527104724}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &538096273 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4843779936237826130, guid: 7f4e46662038e7f4a9ab9bc029127dad,
+    type: 3}
+  m_PrefabInstance: {fileID: 1956926444}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &540222293
 GameObject:
   m_ObjectHideFlags: 0
@@ -4862,6 +4868,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 573297134}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &593158562 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3732457783962719111, guid: fab003dd495e53c4fb9ace5b2d13b7e6,
+    type: 3}
+  m_PrefabInstance: {fileID: 905654635}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &593158564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593158562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35a2e1301529ab54ea2d4c3e72d8d215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemNumber: 2
+--- !u!65 &593158565
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593158562}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5763893, y: 1.3359056, z: 1.796299}
+  m_Center: {x: -0.78819466, y: 0.16795278, z: 0.07200813}
 --- !u!1 &598048928
 GameObject:
   m_ObjectHideFlags: 0
@@ -7035,12 +7073,12 @@ PrefabInstance:
     - target: {fileID: 1787563911014062850, guid: fab003dd495e53c4fb9ace5b2d13b7e6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -52.12626
+      value: -41.87
       objectReference: {fileID: 0}
     - target: {fileID: 1787563911014062850, guid: fab003dd495e53c4fb9ace5b2d13b7e6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 11.660964
+      value: 2.96
       objectReference: {fileID: 0}
     - target: {fileID: 1787563911014062850, guid: fab003dd495e53c4fb9ace5b2d13b7e6,
         type: 3}
