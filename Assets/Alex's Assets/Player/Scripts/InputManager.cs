@@ -16,8 +16,6 @@ public class InputManager : MonoBehaviour
     {
         // THIS IS HOW TO FIX NULL OBJECT ERROR ~ ALEX PLEASE REMEMBER THIS
         playerMovement = FindObjectOfType<PlayerMovement>();
-        buttonBehaviourScript = FindObjectOfType<ButtonBehaviourScript>();
-        doorBehaviour = FindObjectOfType<DoorBehaviour>();
     }
     private void OnEnable()
     {
@@ -56,7 +54,7 @@ public class InputManager : MonoBehaviour
 
     private void HandleLookInput()
     {
-        verticalLookInput = lookInput.y;
+        verticalLookInput = -1*lookInput.y;
         horizontalLookInput = lookInput.x;
     }
 
@@ -71,17 +69,10 @@ public class InputManager : MonoBehaviour
 
     private void HandleInteractInput()
     {
-        if(buttonBehaviourScript.canPressButton && interactInput)
-        {
-            buttonBehaviourScript.buttonPressed = true;
-            buttonBehaviourScript.canPressButton = false;
-            doorBehaviour.DoorOpen();
-            doorBehaviour.doorOpening = true;
-            playerMovement.followCam = false;
-        }
         if(interactInput)
         {
-            playerMovement.HandleAttack();
+            if(playerMovement.attackDelay == 0)
+            {playerMovement.HandleAttack();}
         }
         interactInput = false;
     }
