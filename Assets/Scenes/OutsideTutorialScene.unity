@@ -7443,9 +7443,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2441542643531112857, guid: b1cc94d26cd016d479aa5b522d88da0a,
         type: 3}
+      propertyPath: max_speed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2441542643531112857, guid: b1cc94d26cd016d479aa5b522d88da0a,
+        type: 3}
       propertyPath: playerCamera
       value: 
       objectReference: {fileID: 307627471}
+    - target: {fileID: 2441542643531112857, guid: b1cc94d26cd016d479aa5b522d88da0a,
+        type: 3}
+      propertyPath: boosted_speed
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6408375345263073778, guid: b1cc94d26cd016d479aa5b522d88da0a,
         type: 3}
       propertyPath: door_spawn.Array.size
