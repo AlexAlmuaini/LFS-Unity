@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        gameObject.tag = "Player";
         actions = new Input();
         animator = GetComponent<Animator>();
         GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
