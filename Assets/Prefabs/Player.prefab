@@ -947,6 +947,7 @@ GameObject:
   - component: {fileID: 2742468540895409611}
   - component: {fileID: 2742468540895409612}
   - component: {fileID: 2742468540895409613}
+  - component: {fileID: 5587134345246016070}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1081,6 +1082,19 @@ MonoBehaviour:
   canJump: 0
   followCam: 0
   attacking: 0
+--- !u!114 &5587134345246016070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3084505368843999944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8f4d6de721e8c4eb30441759699d4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door_spawn: []
 --- !u!1 &3589167076423472914
 GameObject:
   m_ObjectHideFlags: 0

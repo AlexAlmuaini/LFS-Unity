@@ -5,6 +5,7 @@ using UnityEngine.Playables;
 
 public class SmallEnemyBehaviour : MonoBehaviour
 {
+    public Transform patrolPost;
     PlayerMovement playerMovement;
     MeshRenderer meshRenderer;
     [SerializeField] GameObject deathParticles;
@@ -16,6 +17,8 @@ public class SmallEnemyBehaviour : MonoBehaviour
     public float detectionRad;
     public float damping;
     public bool isMoving;
+    private bool onGround;
+    private float timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,7 +45,16 @@ public class SmallEnemyBehaviour : MonoBehaviour
         }
         else
         {
+            var lookPos = patrolPost.position - transform.position;
+            lookPos.y = 0;
+            var rotation = Quaternion.LookRotation(lookPos);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
+            GetComponent<Rigidbody>().AddForce(transform.forward * 750);
             isMoving = false;
+            if (onGround)
+            {
+                timer += Time.deltaTime;
+            }
         }
         HealthStates();
     }
@@ -52,6 +64,17 @@ public class SmallEnemyBehaviour : MonoBehaviour
     if(col.gameObject.tag == "Floor")
         {
             if(isMoving == true){GetComponent<Rigidbody>().AddForce(transform.up * 25500);}
+
+            if (isMoving == false)
+            {
+                onGround = true;
+                if (timer >= 2)
+                {
+                    onGround = false;
+                    timer = 0;
+                    GetComponent<Rigidbody>().AddForce(transform.up * 25500 * 5);
+                }
+            }
         }   
    }
    private void OnCollisionEnter(Collision col)

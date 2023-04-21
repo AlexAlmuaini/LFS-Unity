@@ -141,7 +141,7 @@ public void HandleJump()
 
    private void OnCollisionStay(Collision col)
    {
-        if(col.gameObject.tag == "Floor")
+        if(col.gameObject.tag == "Floor" || col.gameObject.tag == "Arena")
             {
                 isGrounded = true;
                 animator.SetBool("isJumping",false);
