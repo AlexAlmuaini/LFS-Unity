@@ -41,11 +41,19 @@ public class EnemyBehaviour : MonoBehaviour
         {
             ReturningToPost();
         }
-        if(!returnState)
+        else
         {
             HandleMovement();
         }
         HealthStates();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Arena")
+        {
+            returnState = true;
+        }
     }
     private void ReturningToPost()
     {
@@ -53,7 +61,7 @@ public class EnemyBehaviour : MonoBehaviour
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
-        GetComponent<Rigidbody>().AddForce(transform.forward * moveSpeed);
+        GetComponent<Rigidbody>().AddForce(transform.forward * moveSpeed * 3);
         if(Vector3.Distance(ReturnPost.position, transform.position) <= 1)
         {
             returnState = false;
@@ -107,10 +115,6 @@ public class EnemyBehaviour : MonoBehaviour
                 }
             }
         }   
-    if(col.gameObject.tag == "Arena")
-        {
-            returnState = true;
-        }
    }
    private void OnCollisionEnter(Collision col)
    {
