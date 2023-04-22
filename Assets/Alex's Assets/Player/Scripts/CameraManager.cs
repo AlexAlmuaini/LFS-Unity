@@ -6,6 +6,7 @@ public class CameraManager : MonoBehaviour
 {
     InputManager inputManager;
     PlayerMovement playerMovement;
+    TestingSplinesScript testingSplinesScript;
     public GameObject cameraPivotObject;
     public Transform targetTransform, cameraPivot;
     private Transform cameraTransform;
@@ -25,6 +26,7 @@ public class CameraManager : MonoBehaviour
         // THIS IS HOW TO FIX NULL OBJECT ERROR ~ ALEX PLEASE REMEMBER THIS
         targetTransform = FindObjectOfType<PlayerManager>().transform;
         inputManager = FindObjectOfType<InputManager>();
+        testingSplinesScript = FindObjectOfType<TestingSplinesScript>();
         cameraTransform = Camera.main.transform;
         playerMovement = FindObjectOfType<PlayerMovement>();
         defaultPosition = cameraTransform.localPosition.z;
@@ -78,8 +80,18 @@ public class CameraManager : MonoBehaviour
             FollowTarget();
             RotateCamera();
         } 
-    
+        if (testingSplinesScript.splineCam)
+        {
+            HandleSplineCam();
+        }
         HandleCameraCollision();
+    }
+
+    public void HandleSplineCam()
+    {
+        Vector3 lookAtPosition = playerMovement.transform.position + transform.up * 1.8f;
+        var targetRotation = Quaternion.LookRotation(lookAtPosition - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
     }
 
     private void HandleCameraCollision()

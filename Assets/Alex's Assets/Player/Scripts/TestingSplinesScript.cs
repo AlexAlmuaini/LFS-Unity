@@ -8,17 +8,11 @@ public class TestingSplinesScript : MonoBehaviour
     PlayerMovement playerMovement;
     CameraManager cameraManager;
     public float interpolateAmount, transInterpolateAmount;
-    public float interpolateAmountX;
-    public float interpolateAmountZ;
     private Vector3 cameraFollowVelocity = Vector3.zero;
     [SerializeField] public Transform pointA;
     [SerializeField] private Transform pointB;
     [SerializeField] private Transform pointC;
     [SerializeField] private Transform pointD;
-    
-    [SerializeField] private Transform pointAB_BC;
-    [SerializeField] private Transform pointBC_CD;
-
     [SerializeField] private Transform pointABCD;
     private Vector3 positionInSpline;
     public bool splineCam, transition;
@@ -40,14 +34,7 @@ public class TestingSplinesScript : MonoBehaviour
         //Interpolates between 4 points using 2 functions, the first interpolates a-b & b-c and then interpolates between them
         // to get a-b-c then interpolates between a-b-c & b-c-d
         positionInSpline = CubicLerp(pointA.position, pointB.position, pointC.position, pointD.position, interpolateAmount);
-        if(transition)
-        {
-            CameraTransitionSmoothing();
-        }
-        if(splineCam && !transition)
-        {
         pointABCD.position = positionInSpline;
-        }
     }
 
     public static float InverseLerp(Vector3 a, Vector3 b, Vector3 value)
@@ -89,20 +76,6 @@ public class TestingSplinesScript : MonoBehaviour
         {
             splineCam = true;
             playerMovement.followCam = false;
-        }
-    }
-
-    private void CameraTransitionSmoothing()
-    {
-        if (splineCam)
-        {
-            transInterpolateAmount = (transInterpolateAmount + Time.deltaTime);
-            pointABCD.position = Vector3.Lerp(playerMovement.transform.position + Vector3.up * 1.6f, positionInSpline, transInterpolateAmount);
-            if(transInterpolateAmount >= 1f)
-            {
-                transInterpolateAmount = 0;
-                transition = false;
-            }
         }
     }
 
