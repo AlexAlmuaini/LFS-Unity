@@ -23,8 +23,10 @@ public class PlayerMovement : MonoBehaviour
     {
         // THIS IS HOW TO FIX NULL OBJECT ERROR ~ ALEX PLEASE REMEMBER THIS
         inputManager = GetComponent<InputManager>();
+        doubleJumpManager = FindObjectOfType<DoubleJumpManager>();
         playerRigidbody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        jumpParticles = GameObject.Find("CloudParticals");
         cameraObject = Camera.main.transform;
         followCam = true;
         speed = movementSpeed;
@@ -113,12 +115,21 @@ public void HandleJump()
                 animator.SetBool("isJumping",true);
                 playerRigidbody.AddForce(transform.up * jumpHeight * 1.5f, ForceMode.Impulse);
                 isJumping = true;
+                if(doubleJumpManager.canDoubleJump == true)
+                {
+                    if(jumps == 1)
+                    {
+                        playerRigidbody.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
+                        animator.Play("Base Layer.Jump",0,0);
+                        jumpParticles.SetActive(true);
+                    }
+                    jumps--;
+                }
             }
 
         else
             {
                 animator.SetBool("isJumping",false);
-                animator.SetBool("isDoubleJumping",false);
             }
     }
    private void HandleFalling()
@@ -135,7 +146,15 @@ public void HandleJump()
 
         if(isGrounded)
         {
-            jumps = 1;
+            if(doubleJumpManager.canDoubleJump == true)
+            {
+                jumps = 2;
+                jumpParticles.SetActive(false);
+            }
+            else
+            {
+                jumps = 1;
+            }
         }
    }
 

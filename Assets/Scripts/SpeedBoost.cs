@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class SpeedBoost : MonoBehaviour
 {
-    public PlayerController controller;
+    public PlayerMovement playerMovement;
 
 
     void Awake()
     {
-        controller = GameObject.Find("RPG-Character").GetComponent<PlayerController>();
+        playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            controller.speedPickedUp = true;
-            controller.max_speed = controller.boosted_speed;
+            playerMovement.speedBoostMultiplier = 2f;
             Destroy(this.gameObject);
         }
     }
