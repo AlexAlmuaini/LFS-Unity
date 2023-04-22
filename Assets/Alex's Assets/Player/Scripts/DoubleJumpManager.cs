@@ -15,6 +15,10 @@ public class DoubleJumpManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(canDoubleJump)
+        {
+            globalStuff.double_jump = true;
+        }
     }
 
     private void OnTriggerEnter(Collider col)

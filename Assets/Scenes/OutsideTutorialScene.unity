@@ -10037,8 +10037,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b26f4a6be4555c4c8649add1b759615, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tnt_collected: 0
-  wire_collected: 0
   tnt_pile: {fileID: 1198193348}
   layed_out_rope: {fileID: 597416672}
 --- !u!4 &1198355207

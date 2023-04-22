@@ -115,15 +115,16 @@ public void HandleJump()
                 animator.SetBool("isJumping",true);
                 playerRigidbody.AddForce(transform.up * jumpHeight * 1.5f, ForceMode.Impulse);
                 isJumping = true;
-                if(doubleJumpManager.canDoubleJump && isJumping)
+                if(globalStuff.double_jump)
                 {
                     if(jumps == 1)
                     {
                         playerRigidbody.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
                         animator.Play("Base Layer.Jump",0,0);
                         jumpParticles.SetActive(true);
+                        jumps = 0;
                     }
-                    jumps--;
+                jumps--;
                 }
             }
 
@@ -134,37 +135,30 @@ public void HandleJump()
     }
    private void HandleFalling()
    {    
-    if(jumps <= 0)
-            {
-                canJump = false;
-                animator.SetBool("isJumping",false);
-            }
-        else
-            {
-                canJump = true;
-            }
-
-        if(isGrounded)
+        if(jumps <= 0)
         {
-            if(doubleJumpManager.canDoubleJump == true)
-            {
-                jumps = 2;
-                jumpParticles.SetActive(false);
-            }
-            else
-            {
-                jumps = 1;
-            }
+            canJump = false;
+            animator.SetBool("isJumping",false);
         }
-   }
+        else
+        {
+            canJump = true;
+        }
+    }
 
    private void OnCollisionStay(Collision col)
    {
-        if(col.gameObject.tag == "Floor" || col.gameObject.tag == "Arena")
-            {
+        if(col.gameObject.tag == "Floor")
+            {            
+                jumps = 1;
                 isGrounded = true;
                 animator.SetBool("isJumping",false);
                 inAirTimer = 0;
+                if(globalStuff.double_jump)
+                {
+                    jumps = 2;
+                }
+
             }   
    }
    private void OnCollisionExit(Collision col)
