@@ -15,6 +15,9 @@ public class InputManager : MonoBehaviour
     public float sprintFloat, interpolateAmount, lockOnCam, verticalMovementInput, horizontalMovementInput,verticalLookInput, horizontalLookInput;
     public bool jumpInput = false, interactInput = false;
 
+    public int swapInput = 0;
+    public GameObject torch;
+
     private void Awake()
     {
         // THIS IS HOW TO FIX NULL OBJECT ERROR ~ ALEX PLEASE REMEMBER THIS
@@ -32,6 +35,7 @@ public class InputManager : MonoBehaviour
             playerControls.Player.LockOnCam.performed += i => lockOnCam = i.ReadValue<float>();
             playerControls.Player.Jump.performed += i => jumpInput = true;
             playerControls.Player.Interact.performed += i => interactInput = true;
+            playerControls.Player.Swapitem.performed += i => swapInput += 1;
         }
 
         playerControls.Enable();
@@ -95,4 +99,20 @@ public class InputManager : MonoBehaviour
     babyslime = Instantiate(slime, transform.position + Vector3.left * - 10, transform.rotation);
     babyslime = Instantiate(slime, transform.position + Vector3.forward *  -10, transform.rotation);
    }
+
+    private void Update()
+    {
+        if (swapInput == 0)
+        {
+            torch.active = false;
+        }
+        if (swapInput == 1)
+        {
+            torch.active = true;
+        }
+        if (swapInput >= 2)
+        {
+            swapInput = 0;
+        }
+    }
 }
