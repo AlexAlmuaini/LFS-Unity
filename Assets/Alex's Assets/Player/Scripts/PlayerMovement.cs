@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody playerRigidbody;
 
     public float movementSpeed, jumpHeight, inAirTimer = 0;
-    public float rotationSpeed = 15, attackDelay = 0.0f, jumps, speedBoostMultiplier = 1;
+    public float rotationSpeed = 15, attackDelay = 0.0f, jumps, speedBoostMultiplier = 1, kills = 0;
     public bool isJumping, isGrounded, canJump, followCam, attacking;
     private float speed;
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class InputManager : MonoBehaviour
 {
@@ -8,14 +9,17 @@ public class InputManager : MonoBehaviour
     PlayerMovement playerMovement;
     ButtonBehaviourScript buttonBehaviourScript;
     DoorBehaviour doorBehaviour;
+    [SerializeField] public GameObject slime;
+    private GameObject babyslime;
     public Vector2 movementInput, lookInput;
-    public float sprintFloat, lockOnCam, verticalMovementInput, horizontalMovementInput,verticalLookInput, horizontalLookInput;
+    public float sprintFloat, interpolateAmount, lockOnCam, verticalMovementInput, horizontalMovementInput,verticalLookInput, horizontalLookInput;
     public bool jumpInput = false, interactInput = false;
 
     private void Awake()
     {
         // THIS IS HOW TO FIX NULL OBJECT ERROR ~ ALEX PLEASE REMEMBER THIS
         playerMovement = FindObjectOfType<PlayerMovement>();
+        buttonBehaviourScript = FindObjectOfType<ButtonBehaviourScript>();
     }
     private void OnEnable()
     {
@@ -69,11 +73,26 @@ public class InputManager : MonoBehaviour
 
     private void HandleInteractInput()
     {
+        if(buttonBehaviourScript.canPressButton && interactInput)
+        {
+            StartCoroutine(ESpawn());
+        }
         if(interactInput)
         {
-            if(playerMovement.attackDelay == 0)
-            {playerMovement.HandleAttack();}
+            playerMovement.HandleAttack();
         }
         interactInput = false;
     }
+
+    IEnumerator ESpawn()
+   {
+    if(!buttonBehaviourScript.buttonPressed)
+    {
+        buttonBehaviourScript.buttonPressed = true;
+    }
+    yield return new WaitForSeconds(1.0f);
+    Destroy(buttonBehaviourScript.gameObject);
+    babyslime = Instantiate(slime, transform.position + Vector3.left * - 10, transform.rotation);
+    babyslime = Instantiate(slime, transform.position + Vector3.forward *  -10, transform.rotation);
+   }
 }

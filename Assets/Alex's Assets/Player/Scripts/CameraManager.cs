@@ -6,7 +6,9 @@ public class CameraManager : MonoBehaviour
 {
     InputManager inputManager;
     PlayerMovement playerMovement;
-    TestingSplinesScript testingSplinesScript;
+    [SerializeField] TestingSplinesScript testingSplinesScript;
+    DoorBehaviour doorBehaviour;
+    [SerializeField] public GameObject door;
     public GameObject cameraPivotObject;
     public Transform targetTransform, cameraPivot;
     private Transform cameraTransform;
@@ -16,9 +18,9 @@ public class CameraManager : MonoBehaviour
     Quaternion targetRotation, currentRotation;
     private float defaultPosition;
     public LayerMask collisionLayers;
-    public Vector3 offset;
+    public Vector3 offset, doorCamOffset;
     public float followSpeed = 0.2f, interpolateAmount, lookAngle, pivotAngle, lookSpeed = 2.0f, pivotSpeed = 2.0f, minPivotAngle, maxPivotAngle, cameraCollisionRadius = 0.2f
-    , cameraCollisionOffset = 0.2f, minimumCollisionOffset = 0.2f;
+    , cameraCollisionOffset = 0.2f, minimumCollisionOffset = 0.2f, doorCamTimer = 0.0f;
     public bool fixRot;
 
     private void Awake()
@@ -30,6 +32,7 @@ public class CameraManager : MonoBehaviour
         cameraTransform = Camera.main.transform;
         playerMovement = FindObjectOfType<PlayerMovement>();
         defaultPosition = cameraTransform.localPosition.z;
+        doorBehaviour = FindObjectOfType<DoorBehaviour>();
     }
     private void FollowTarget()
     {
@@ -80,11 +83,48 @@ public class CameraManager : MonoBehaviour
             FollowTarget();
             RotateCamera();
         } 
+        if(doorBehaviour.doorOpening)
+        {
+            HandleDoorCam();
+        }
         if (testingSplinesScript.splineCam)
         {
             HandleSplineCam();
-        }
+        }  
         HandleCameraCollision();
+    }
+
+    public void HandleDoorCam()
+    {
+        //starts timer for how long to look at door
+        doorCamTimer += Time.deltaTime;
+
+        // resets camera local positions
+        Vector3 targetDistance =  Vector3.zero;
+        Vector3 desiredPosition = door.transform.position + doorCamOffset;
+        Vector3 targetPosition = desiredPosition;
+        transform.position = targetPosition;
+        
+        //points camera at door
+        Vector3 lookAtPosition = door.transform.position + transform.up * 1.8f;
+        var targetRot = Quaternion.LookRotation(lookAtPosition - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, 5 * Time.deltaTime);
+        cameraPivotObject.transform.localPosition = targetDistance + transform.up * 0.6f;
+        //cameraTransform.position = targetDistance;
+
+        // resets rotation
+        Vector3 rotation;
+        rotation = Vector3.zero;
+        Quaternion targetRotation = Quaternion.Euler(rotation);
+        targetRotation = Quaternion.Euler(rotation);
+        cameraPivot.localRotation = targetRotation;
+
+        // switches cam back to player after 2.5 seconds
+        if(doorCamTimer >= 2.5)
+        {
+            doorBehaviour.doorOpening = false;
+            playerMovement.followCam = true;
+        }
     }
 
     public void HandleSplineCam()

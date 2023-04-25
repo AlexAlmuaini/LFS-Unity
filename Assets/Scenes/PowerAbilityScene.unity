@@ -873,7 +873,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1265868541}
     - target: {fileID: 3728749820611307571, guid: 76bc8c33559a1574ba3bf30ae3faa273,
         type: 3}
       propertyPath: transition
@@ -882,7 +882,7 @@ PrefabInstance:
     - target: {fileID: 3728749820611307571, guid: 76bc8c33559a1574ba3bf30ae3faa273,
         type: 3}
       propertyPath: sceneNumber
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6617238995030945356, guid: 76bc8c33559a1574ba3bf30ae3faa273,
         type: 3}
@@ -968,6 +968,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7390320991489821959, guid: 47807d3dd02948b48ace2b4bae7f04e3,
     type: 3}
   m_PrefabInstance: {fileID: 1320125981}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1265868541 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3084505368843999944, guid: e7640da076f11c244a2118c80c58c308,
+    type: 3}
+  m_PrefabInstance: {fileID: 920017862}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1320125981
 PrefabInstance:

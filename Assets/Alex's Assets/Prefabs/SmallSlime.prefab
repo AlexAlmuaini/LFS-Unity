@@ -102,12 +102,6 @@ PrefabInstance:
     - {fileID: 8753985277420662988, guid: 3fe1b257f5c8a784b9c1c257d482d7dd, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3fe1b257f5c8a784b9c1c257d482d7dd, type: 3}
---- !u!4 &3829471647052458153 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1690154177919737240, guid: 3fe1b257f5c8a784b9c1c257d482d7dd,
-    type: 3}
-  m_PrefabInstance: {fileID: 2472940642208167217}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6570119997335127546 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8753985277420662987, guid: 3fe1b257f5c8a784b9c1c257d482d7dd,
@@ -126,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 877721cc426c98f4f91b73af82e51acd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  patrolPost: {fileID: 3829471647052458153}
+  patrolPost: {fileID: 7058255795453566049}
   deathParticles: {fileID: 1087698258596260712, guid: fd0e54862190513448640b3a6f47d033,
     type: 3}
   moveSpeed: 200
@@ -134,3 +128,9 @@ MonoBehaviour:
   detectionRad: 10
   damping: 20
   isMoving: 0
+--- !u!4 &7058255795453566049 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4873546079694203216, guid: 3fe1b257f5c8a784b9c1c257d482d7dd,
+    type: 3}
+  m_PrefabInstance: {fileID: 2472940642208167217}
+  m_PrefabAsset: {fileID: 0}

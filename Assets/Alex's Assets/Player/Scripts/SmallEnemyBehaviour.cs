@@ -100,6 +100,7 @@ public class SmallEnemyBehaviour : MonoBehaviour
    }
     IEnumerator EDeath()
    {
+    playerMovement.kills++;
     slimeParticles = Instantiate(deathParticles, transform.position, transform.rotation);
     Destroy(gameObject);
     yield return new WaitForSeconds(deathTime);

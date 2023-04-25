@@ -5,32 +5,32 @@ using UnityEngine.Playables;
 
 public class DoorBehaviour : MonoBehaviour
 {
-    private PlayableDirector director; 
-    public GameObject controlPanel;
-    public GameObject doorObject;
-    public float moveDistance = 1;
-    GameObject doorLeft, doorRight;
+    public float interpolateAmount;
+    PlayerMovement playerMovement;
+    [SerializeField] GameObject door;
     public bool doorOpening = false;
-    //Rigidbody leftDoorRigidBody, rightDoorRigidBody;
     void Awake()
     {
-        doorObject = GameObject.Find("Door");
-        doorLeft = GameObject.Find("DoorLeft");
-        doorRight = GameObject.Find("DoorRight");
-        director = doorObject.GetComponent<PlayableDirector>();
-        director.Stop();
-        //director.played += Director_Played;
-        //director.stopped += Director_Stopped;
-        //leftDoorRigidBody = doorLeft.GetComponent<Rigidbody>();
-        //rightDoorRigidBody = doorRight.GetComponent<Rigidbody>();
+        playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
+    void Update()
+    {
+        if(playerMovement.kills >= 4)
+        {StartCoroutine(EOpen());}
+    }
     public void DoorOpen()
     {
-        //leftDoorRigidBody.AddForce(-transform.right * moveDistance, ForceMode.Impulse);
-        //rightDoorRigidBody.AddForce(transform.right * moveDistance, ForceMode.Impulse);
-        //doorLeft.transform.position = doorLeft.transform.position + new Vector3(0, 0, - moveDistance);
-        //doorRight.transform.position = doorRight.transform.position + new Vector3(0, 0, moveDistance);
-        director.Play();
+        doorOpening = true;
+        playerMovement.followCam = false;
+        interpolateAmount += Time.deltaTime;
+        door.transform.position = Vector3.Lerp(door.transform.position, door.transform.position + Vector3.down * 5, interpolateAmount * 0.02f);
+        if (interpolateAmount >=3.5f)
+        {playerMovement.kills = 0;}
+    }
+    IEnumerator EOpen()
+    {
+        yield return new WaitForSeconds(0.50f);
+        DoorOpen();
     }
 }
