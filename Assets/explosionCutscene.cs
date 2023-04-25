@@ -9,6 +9,9 @@ public class explosionCutscene : MonoBehaviour
     GameObject player;
     public GameObject explosion;
     public GameObject levelManager;
+
+    public GameObject playerCam;
+    public GameObject explosionCam;
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -23,8 +26,19 @@ public class explosionCutscene : MonoBehaviour
                 && collectionCheck.tnt_pile
                 && collectionCheck.layed_out_rope)
             {
-                explosion.GetComponent<explosion>().enabled = true;
+                playerCam.SetActive(false);
+                explosionCam.SetActive(true);
+                StartCoroutine(Cutscene());
             }
         }
+    }
+
+    IEnumerator Cutscene()
+    {
+        yield return new WaitForSeconds(2);
+        explosion.GetComponent<explosion>().enabled = true;
+        yield return new WaitForSeconds(3);
+        playerCam.SetActive(true);
+        explosionCam.SetActive(false);
     }
 }
