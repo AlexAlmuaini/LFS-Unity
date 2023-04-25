@@ -16,7 +16,8 @@ public class InputManager : MonoBehaviour
     public bool jumpInput = false, interactInput = false;
 
     public int swapInput = 0;
-    public GameObject torch;
+    public bool torch_collected, tnt_collected, rope_collected;
+    public GameObject torch, tnt, rope;
 
     private void Awake()
     {
@@ -105,12 +106,42 @@ public class InputManager : MonoBehaviour
         if (swapInput == 0)
         {
             torch.active = false;
+            tnt.active = false;
+            rope.active = false;
         }
         if (swapInput == 1)
         {
-            torch.active = true;
+            if (torch_collected)
+            {
+                rope.active = false;
+                tnt.active = false;
+                torch.active = true;
+            }
+            else swapInput += 1;
+
         }
-        if (swapInput >= 2)
+        if (swapInput == 2)
+        {
+            if (tnt_collected)
+            {
+                rope.active = false;
+                torch.active = false;
+                tnt.active = true;
+            }
+            else swapInput += 1;
+
+        }
+        if(swapInput == 3)
+        {
+            if (rope_collected)
+            {
+                tnt.active = false;
+                torch.active = false;
+                rope.active = true;
+            }
+            else swapInput += 1;
+        }
+        if(swapInput >= 4)
         {
             swapInput = 0;
         }

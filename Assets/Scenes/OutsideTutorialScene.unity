@@ -10899,6 +10899,12 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!1 &1323034559 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4935522807018767432, guid: e7640da076f11c244a2118c80c58c308,
+    type: 3}
+  m_PrefabInstance: {fileID: 1490770210}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1328250034
 GameObject:
   m_ObjectHideFlags: 0
@@ -12366,6 +12372,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2742468540895409611, guid: e7640da076f11c244a2118c80c58c308,
+        type: 3}
+      propertyPath: tnt
+      value: 
+      objectReference: {fileID: 1323034559}
+    - target: {fileID: 2742468540895409611, guid: e7640da076f11c244a2118c80c58c308,
+        type: 3}
+      propertyPath: rope
+      value: 
+      objectReference: {fileID: 2122166723}
     - target: {fileID: 3084505368843999944, guid: e7640da076f11c244a2118c80c58c308,
         type: 3}
       propertyPath: m_Name
@@ -17802,6 +17818,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2837920769720104214, guid: ed3d1dd8e7e9f8242afeae219be8ac6f,
     type: 3}
   m_PrefabInstance: {fileID: 2114616353}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2122166723 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2565064031627492875, guid: e7640da076f11c244a2118c80c58c308,
+    type: 3}
+  m_PrefabInstance: {fileID: 1490770210}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2123604728
 PrefabInstance:
