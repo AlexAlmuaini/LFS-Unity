@@ -101,7 +101,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             if(isMoving == true)
             {
-                GetComponent<Rigidbody>().AddForce(transform.up * 25500);
+                GetComponent<Rigidbody>().AddForce(transform.up * 30000);
             }
 
             if (isMoving == false)
@@ -111,23 +111,21 @@ public class EnemyBehaviour : MonoBehaviour
                 {
                     onGround = false;
                     timer = 0;
-                    GetComponent<Rigidbody>().AddForce(transform.up * 25500 * 5);
+                    GetComponent<Rigidbody>().AddForce(transform.up * 30000 * 5);
                 }
             }
-        }   
-   }
-   private void OnCollisionEnter(Collision col)
-   {
-    if(col.gameObject.tag == "Player")
+        }
+
+        if(col.gameObject.tag == "Player")
         {
             if(playerMovement.attacking)
             {
                 StartCoroutine(EFlash());
-                GetComponent<Rigidbody>().AddForce(transform.up * 25500);
+                GetComponent<Rigidbody>().AddForce(transform.up * 30000);
                 GetComponent<Rigidbody>().AddForce(transform.forward * -50000);
                 health--;
             }
-        }   
+        }     
    }
 
    private void HealthStates()

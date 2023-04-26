@@ -115,7 +115,7 @@ public void HandleJump()
                 animator.SetBool("isJumping",true);
                 playerRigidbody.AddForce(transform.up * jumpHeight * 1.5f, ForceMode.Impulse);
                 isJumping = true;
-                if(globalStuff.double_jump)
+                if(doubleJumpManager.canDoubleJump)
                 {
                     if(jumps == 1)
                     {
@@ -154,7 +154,7 @@ public void HandleJump()
                 isGrounded = true;
                 animator.SetBool("isJumping",false);
                 inAirTimer = 0;
-                if(globalStuff.double_jump)
+                if(doubleJumpManager.canDoubleJump)
                 {
                     jumps = 2;
                 }

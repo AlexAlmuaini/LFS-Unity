@@ -17,10 +17,6 @@ public class DoubleJumpManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(canDoubleJump)
-        {
-            globalStuff.double_jump = true;
-        }
         Spawn();
     }
 
@@ -33,7 +29,7 @@ public class DoubleJumpManager : MonoBehaviour
     private void Spawn()
     {
         if(playerMovement.kills >= 4)
-        {gameObject.transform.position = playerMovement.transform.position + Vector3.forward * 3; //playerMovement.kills = 0;
+        {gameObject.transform.position = playerMovement.transform.position + Vector3.forward * 3;
         }
     }
 }

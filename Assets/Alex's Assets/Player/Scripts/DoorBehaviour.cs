@@ -25,7 +25,7 @@ public class DoorBehaviour : MonoBehaviour
         playerMovement.followCam = false;
         interpolateAmount += Time.deltaTime;
         door.transform.position = Vector3.Lerp(door.transform.position, door.transform.position + Vector3.down * 5, interpolateAmount * 0.02f);
-        if (interpolateAmount >=3.5f)
+        if (interpolateAmount >=2f)
         {playerMovement.kills = 0;}
     }
     IEnumerator EOpen()

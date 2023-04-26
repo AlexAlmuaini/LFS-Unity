@@ -75,11 +75,8 @@ public class SmallEnemyBehaviour : MonoBehaviour
                     GetComponent<Rigidbody>().AddForce(transform.up * 25500 * 5);
                 }
             }
-        }   
-   }
-   private void OnCollisionEnter(Collision col)
-   {
-    if(col.gameObject.tag == "Player")
+        } 
+        if(col.gameObject.tag == "Player")
         {
             if(playerMovement.attacking)
             {
@@ -88,7 +85,7 @@ public class SmallEnemyBehaviour : MonoBehaviour
                 GetComponent<Rigidbody>().AddForce(transform.forward * -50000);
                 health--;
             }
-        }   
+        }     
    }
 
    private void HealthStates()
