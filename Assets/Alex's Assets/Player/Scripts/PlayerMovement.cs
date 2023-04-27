@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody playerRigidbody;
 
     public float movementSpeed, jumpHeight, inAirTimer = 0;
-    public float rotationSpeed = 15, attackDelay = 0.0f, jumps, speedBoostMultiplier = 1, kills = 0;
+    public float rotationSpeed = 15, attackDelay = 0.0f, jumps, speedBoostMultiplier = 1, kills = 0, punchInt;
     public bool isJumping, isGrounded, canJump, followCam, attacking;
     private float speed;
 
@@ -106,25 +106,33 @@ public void HandleAllMovement()
 public void HandleAttack()
 {
     attacking = true;
-    animator.Play("Punching", 0, 0.25f);
+    if (punchInt == 0)
+    {
+        animator.Play("Base Layer.Punching",0,.45f);
+        punchInt++;
+    }
+    else if (punchInt == 1)
+    {
+        animator.Play("Base Layer.Cross Punch",0,.425f);
+        punchInt--;
+    }
 }
 public void HandleJump()
     {
         if(canJump == true)
             {
-                animator.Play("Base Layer.Jump",0,0);
+                animator.SetBool("isJumping",true);
                 playerRigidbody.AddForce(transform.up * jumpHeight * 1.5f, ForceMode.Impulse);
                 isJumping = true;
-                if(doubleJumpManager.canDoubleJump)
+                if(doubleJumpManager.canDoubleJump == true)
                 {
                     if(jumps == 1)
                     {
                         playerRigidbody.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
                         animator.Play("Base Layer.Jump",0,0);
                         jumpParticles.SetActive(true);
-                        jumps = 0;
                     }
-                jumps--;
+                    jumps--;
                 }
             }
 
