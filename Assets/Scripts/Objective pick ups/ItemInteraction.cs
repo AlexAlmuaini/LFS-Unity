@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemInteraction : MonoBehaviour
 {
     public int itemNumber;
+
     private void OnTriggerEnter(Collider other)
     {
         if(other == GameObject.FindGameObjectWithTag("Player").GetComponent<Collider>())

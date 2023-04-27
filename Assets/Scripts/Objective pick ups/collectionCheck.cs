@@ -6,13 +6,21 @@ public class collectionCheck : MonoBehaviour
 { 
     public GameObject tnt_pile;
     public GameObject layed_out_rope;
+    item_placement itemPlacement;
+
+    public GameObject itemPlacementChecker;
+
+    private void Awake()
+    {
+        itemPlacement = itemPlacementChecker.GetComponent<item_placement>();
+    }
     private void Update()
     {
-        if(globalStuff.tnt_collected)
+        if(itemPlacement.tnt_placed)
         {
             tnt_pile.SetActive(true);
         }
-        if(globalStuff.wire_collected)
+        if(itemPlacement.rope_placed)
         {
             layed_out_rope.SetActive(true);
         }

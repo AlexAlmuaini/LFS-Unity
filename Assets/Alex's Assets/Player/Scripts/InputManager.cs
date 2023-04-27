@@ -103,6 +103,9 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+        torch_collected = globalStuff.torch_collected;
+        tnt_collected = globalStuff.tnt_collected;
+        rope_collected = globalStuff.wire_collected;
         if (swapInput == 0)
         {
             torch.active = false;
