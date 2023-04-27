@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     InputManager inputManager;
     GameObject jumpParticles;
     GameObject speedParticles;
+    GameObject slashParticles;
+    GameObject slashParticles2;
     DoubleJumpManager doubleJumpManager;
     SpeedBoostManager speedBoostManager;
     public Vector3 moveDirection;
@@ -27,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         jumpParticles = GameObject.Find("CloudParticals");
+        slashParticles = GameObject.Find("SlashParticles");
+        slashParticles2 = GameObject.Find("SlashParticles2");
         cameraObject = Camera.main.transform;
         followCam = true;
         speed = movementSpeed;
@@ -106,16 +110,19 @@ public void HandleAllMovement()
 public void HandleAttack()
 {
     attacking = true;
-    if (punchInt == 0)
-    {
-        animator.Play("Base Layer.Punching",0,.45f);
-        punchInt++;
-    }
-    else if (punchInt == 1)
-    {
-        animator.Play("Base Layer.Cross Punch",0,.425f);
-        punchInt--;
-    }
+        if (punchInt == 0)
+        {
+            animator.Play("Base Layer.Punching", 0, .45f);
+            punchInt++;
+            slashParticles2.GetComponent<ParticleSystem>().Play();
+        }
+        else if (punchInt == 1)
+        {
+            animator.Play("Base Layer.Cross Punch", 0, .425f);
+            punchInt--;
+            slashParticles.GetComponent<ParticleSystem>().Play();
+        }
+        
 }
 public void HandleJump()
     {
