@@ -48,14 +48,14 @@ public class FollowCamera : MonoBehaviour
             Look(look);
         }
 
-        else if(!lookCamEnabled)
+        /*else if(!lookCamEnabled)
         {
             Look(move);
             if(look.x is < 0 or > 0)
             {
                 lookCamEnabled = true;
             }
-        }
+        }*/
     }
 
     private void Look(Vector2 rotate)

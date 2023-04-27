@@ -33,10 +33,18 @@ public class PlayerController : MonoBehaviour
 
     DoubleJumpManager doubleJumpManager;
 
+
+    public void Start()
+    {
+        Collider myCollider = GetComponent<Collider>();
+
+        // Set the tag of the collider
+        myCollider.tag = "Player";
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        gameObject.tag = "Player";
         actions = new Input();
         animator = GetComponent<Animator>();
         GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
