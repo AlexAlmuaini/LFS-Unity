@@ -29,7 +29,12 @@ public class ButtonBehaviourScript : MonoBehaviour
             {
                 canPressButton = true;
             }
-        else
+        
+    }
+
+    private void OnTriggerExit(Collider col)
+    {
+        if(col.gameObject.tag == "Player")
         {
             canPressButton = false;
         }
