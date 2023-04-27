@@ -23,6 +23,7 @@ public class DoubleJumpManager : MonoBehaviour
     private void OnTriggerEnter(Collider col)
     {
         canDoubleJump = true;
+        globalStuff.double_jump = true;
         this.gameObject.SetActive(false);
     }
     

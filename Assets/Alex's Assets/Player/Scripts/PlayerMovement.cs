@@ -169,7 +169,7 @@ public void HandleJump()
                 isGrounded = true;
                 animator.SetBool("isJumping",false);
                 inAirTimer = 0;
-                if(doubleJumpManager.canDoubleJump)
+            if (globalStuff.double_jump == true)
                 {
                     jumps = 2;
                 }
