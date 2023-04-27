@@ -36,7 +36,7 @@ public class CameraManager : MonoBehaviour
     }
     private void FollowTarget()
     {
-        Vector3 desiredPosition = targetTransform.position + offset;
+        Vector3 desiredPosition = targetTransform.position - offset;
         Vector3 targetPosition = Vector3.SmoothDamp(transform.position, desiredPosition, ref cameraFollowVelocity, followSpeed);
         Vector3 targetDistance = new Vector3(0.0f, 1.6f,-0.7f);
         cameraPivotObject.transform.localPosition = targetDistance;
@@ -56,7 +56,7 @@ public class CameraManager : MonoBehaviour
         pivotAngle = Mathf.Clamp(pivotAngle, minPivotAngle, maxPivotAngle);
 
         rotation = Vector3.zero;
-        rotation.y = lookAngle;
+        rotation.y = lookAngle + 180;
         targetRotation = Quaternion.Euler(rotation);
         if(fixRot)
         {
