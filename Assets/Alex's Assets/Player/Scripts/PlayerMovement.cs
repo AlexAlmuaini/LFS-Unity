@@ -112,7 +112,7 @@ public void HandleJump()
     {
         if(canJump == true)
             {
-                animator.SetBool("isJumping",true);
+                animator.Play("Base Layer.Jump",0,0);
                 playerRigidbody.AddForce(transform.up * jumpHeight * 1.5f, ForceMode.Impulse);
                 isJumping = true;
                 if(doubleJumpManager.canDoubleJump)
