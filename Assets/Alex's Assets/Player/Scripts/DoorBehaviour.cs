@@ -21,8 +21,6 @@ public class DoorBehaviour : MonoBehaviour
     }
     public void DoorOpen()
     {
-        doorOpening = true;
-        playerMovement.followCam = false;
         interpolateAmount += Time.deltaTime;
         door.transform.position = Vector3.Lerp(door.transform.position, door.transform.position + Vector3.down * 5, interpolateAmount * 0.02f);
         if (interpolateAmount >=2f)
@@ -30,6 +28,9 @@ public class DoorBehaviour : MonoBehaviour
     }
     IEnumerator EOpen()
     {
+        playerMovement.followCam = false;
+        playerMovement.lockOnCamera = false;
+        doorOpening = true;
         yield return new WaitForSeconds(0.50f);
         DoorOpen();
     }

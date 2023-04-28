@@ -76,6 +76,10 @@ public class SmallEnemyBehaviour : MonoBehaviour
                 }
             }
         } 
+        
+   }
+   private void OnTriggerStay(Collider col)
+   {
         if(col.gameObject.tag == "Player")
         {
             if(playerMovement.attacking)

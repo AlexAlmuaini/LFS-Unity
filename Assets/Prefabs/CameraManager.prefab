@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 4535558001236205246}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4535558001078288633
 MonoBehaviour:
@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae7b62b427e7504db8e0adc0323cef5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  testingSplinesScript: {fileID: 0}
+  door: {fileID: 0}
   cameraPivotObject: {fileID: 4535558001236205245}
   targetTransform: {fileID: 0}
   cameraPivot: {fileID: 4535558001236205246}
@@ -52,18 +54,21 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 129
   offset: {x: 0, y: 0, z: 0}
+  doorCamOffset: {x: 0, y: 0, z: 0}
   followSpeed: 0.1
   interpolateAmount: 0
   lookAngle: 0
   pivotAngle: 0
-  lookSpeed: 0.5
-  pivotSpeed: 0.4
+  lookSpeed: 0.8
+  pivotSpeed: 0.6
   minPivotAngle: -35
   maxPivotAngle: 35
   cameraCollisionRadius: 0.2
   cameraCollisionOffset: 0.2
   minimumCollisionOffset: 0.2
+  doorCamTimer: 0
   fixRot: 0
+  enemyDetected: 0
 --- !u!1 &4535558001236205245
 GameObject:
   m_ObjectHideFlags: 0

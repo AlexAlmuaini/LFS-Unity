@@ -78,9 +78,12 @@ public class InputManager : MonoBehaviour
 
     private void HandleInteractInput()
     {
-        if(buttonBehaviourScript.canPressButton && interactInput)
+        if(buttonBehaviourScript != null)
         {
-            StartCoroutine(ESpawn());
+            if(buttonBehaviourScript.canPressButton && interactInput)
+            {
+                StartCoroutine(ESpawn());
+            }
         }
         if(interactInput)
         {

@@ -17,11 +17,12 @@ public class CameraManager : MonoBehaviour
     Vector3 rotation;
     Quaternion targetRotation, currentRotation;
     private float defaultPosition;
+    private Quaternion enemyRot;
     public LayerMask collisionLayers;
     public Vector3 offset, doorCamOffset;
     public float followSpeed = 0.2f, interpolateAmount, lookAngle, pivotAngle, lookSpeed = 2.0f, pivotSpeed = 2.0f, minPivotAngle, maxPivotAngle, cameraCollisionRadius = 0.2f
     , cameraCollisionOffset = 0.2f, minimumCollisionOffset = 0.2f, doorCamTimer = 0.0f;
-    public bool fixRot;
+    public bool fixRot, enemyDetected;
 
     private void Awake()
     {
@@ -48,49 +49,39 @@ public class CameraManager : MonoBehaviour
         fixRot = true;
     }
 
-    private void RotateCamera()
-    {
-
-        lookAngle = lookAngle + inputManager.horizontalLookInput * lookSpeed;
-        pivotAngle = pivotAngle + inputManager.verticalLookInput * pivotSpeed;
-        pivotAngle = Mathf.Clamp(pivotAngle, minPivotAngle, maxPivotAngle);
-
-        rotation = Vector3.zero;
-        rotation.y = lookAngle + 180;
-        targetRotation = Quaternion.Euler(rotation);
-        if(fixRot)
-        {
-            interpolateAmount = (interpolateAmount + Time.deltaTime * 1.5f);
-            targetRotation = Quaternion.Lerp(currentRotation, targetRotation, interpolateAmount);
-            if(interpolateAmount >=1)
-            {
-                interpolateAmount = 0;
-                fixRot= false;
-            }
-        }
-        transform.rotation = targetRotation;
-
-        rotation = Vector3.zero;
-        rotation.x = pivotAngle;
-        targetRotation = Quaternion.Euler(rotation);
-        cameraPivot.localRotation = targetRotation;
-    }
 
     public void HandelAllCameraMovement()
     {
+        if(doorBehaviour != null)
+        {
+            if(doorBehaviour.doorOpening)
+            {
+                HandleDoorCam();
+            }
+        }
+        if(testingSplinesScript != null)
+        {
+            if (testingSplinesScript.splineCam)
+            {
+                HandleSplineCam();
+            }  
+        }
+        if(playerMovement.enemies.Length > 0)
+        {
+            if(playerMovement.lockOnCamera)    
+            {
+                HandleLockOnCam();
+                FollowTarget();
+                rotationFix();
+            }
+        }
         if(playerMovement.followCam)
         {
+            offset = Vector3.zero;
             FollowTarget();
             RotateCamera();
         } 
-        if(doorBehaviour.doorOpening)
-        {
-            HandleDoorCam();
-        }
-        if (testingSplinesScript.splineCam)
-        {
-            HandleSplineCam();
-        }  
+        
         HandleCameraCollision();
     }
 
@@ -120,7 +111,7 @@ public class CameraManager : MonoBehaviour
         cameraPivot.localRotation = targetRotation;
 
         // switches cam back to player after 2.5 seconds
-        if(doorCamTimer >= 2.5)
+        if(doorCamTimer >= 2.5f)
         {
             doorBehaviour.doorOpening = false;
             playerMovement.followCam = true;
@@ -132,6 +123,58 @@ public class CameraManager : MonoBehaviour
         Vector3 lookAtPosition = playerMovement.transform.position + transform.up * 1.8f;
         var targetRotation = Quaternion.LookRotation(lookAtPosition - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
+    }
+
+    public void HandleLockOnCam()
+    {   
+        if(playerMovement.enemies.Length > 0)
+        {
+            
+            offset = new Vector3(0.0f, -1.0f, 0.0f);
+
+            pivotAngle = pivotAngle + inputManager.verticalLookInput * pivotSpeed;
+            pivotAngle = Mathf.Clamp(pivotAngle, minPivotAngle, maxPivotAngle);
+            var rot = Vector3.zero;
+            rot.x = pivotAngle;
+
+            var lookPos = playerMovement.enemyPos + Vector3.down - playerMovement.transform.position;
+            var rotation = Quaternion.LookRotation(lookPos);
+            enemyRot = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 1.5f);
+            transform.rotation = enemyRot;
+
+            targetRotation = Quaternion.Euler(rot);
+            cameraPivot.localRotation = targetRotation;
+        }    
+    }
+
+    private void RotateCamera()
+    {
+
+        lookAngle = lookAngle + inputManager.horizontalLookInput * lookSpeed;
+        pivotAngle = pivotAngle + inputManager.verticalLookInput * pivotSpeed;
+        pivotAngle = Mathf.Clamp(pivotAngle, minPivotAngle, maxPivotAngle);
+
+        rotation = Vector3.zero;
+        rotation.y = lookAngle + 180;
+        targetRotation = Quaternion.Euler(rotation);
+        
+        if(fixRot)
+        {
+            interpolateAmount = (interpolateAmount + Time.deltaTime * 1.5f);
+            targetRotation = Quaternion.Lerp(currentRotation, targetRotation, interpolateAmount);
+            if(interpolateAmount >=1)
+            {
+                interpolateAmount = 0;
+                fixRot= false;
+            }
+        }
+        
+        transform.rotation = targetRotation;
+
+        rotation = Vector3.zero;
+        rotation.x = pivotAngle;
+        targetRotation = Quaternion.Euler(rotation);
+        cameraPivot.localRotation = targetRotation;
     }
 
     private void HandleCameraCollision()

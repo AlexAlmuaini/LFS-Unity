@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class EnemyBehaviour : MonoBehaviour
+public class KingSlimeBehaviour : MonoBehaviour
 {
     PlayerMovement playerMovement;
     MeshRenderer meshRenderer;
@@ -12,7 +12,7 @@ public class EnemyBehaviour : MonoBehaviour
     private GameObject babyslime, deadSlime;
     private Transform player;
     [SerializeField] GameObject deathParticles;
-    private float dist, flashTime = 0.15f, deathTime = 1.0f;
+    private float dist, flashTime = 0.15f, deathTime = 5.0f;
     public float moveSpeed, health = 8;
     public float detectionRad;
     public float damping;
@@ -27,9 +27,9 @@ public class EnemyBehaviour : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
         playerMovement = FindObjectOfType<PlayerMovement>();
         isMoving = false;
-        meshRenderer = GetComponentInChildren<MeshRenderer>();
         originalColour = meshRenderer.material.color;
         damageColor.a = 0.41f;
     }
@@ -114,21 +114,20 @@ public class EnemyBehaviour : MonoBehaviour
                     GetComponent<Rigidbody>().AddForce(transform.up * 30000 * 5);
                 }
             }
-        }   
-   }
-private void OnTriggerStay(Collider col)
-   {
+        }
+
         if(col.gameObject.tag == "Player")
         {
             if(playerMovement.attacking)
             {
                 StartCoroutine(EFlash());
-                GetComponent<Rigidbody>().AddForce(transform.up * 25500);
-                GetComponent<Rigidbody>().AddForce(transform.forward * -50000);
+                GetComponent<Rigidbody>().AddForce(transform.up * 20000);
+                GetComponent<Rigidbody>().AddForce(transform.forward * -30000);
                 health--;
             }
         }     
    }
+
    private void HealthStates()
    {
         if(health <= 0)
@@ -147,6 +146,9 @@ private void OnTriggerStay(Collider col)
    {
     babyslime = Instantiate(nextSlime, transform.position + Vector3.left * - 2, transform.rotation);
     babyslime = Instantiate(nextSlime, transform.position, transform.rotation);
+    babyslime = Instantiate(nextSlime, transform.position + Vector3.left * 2, transform.rotation);
+    babyslime = Instantiate(nextSlime, transform.position + Vector3.back * - 2 , transform.rotation);
+    babyslime = Instantiate(nextSlime, transform.position + Vector3.back * 2 , transform.rotation);
     deadSlime = Instantiate(deathParticles, transform.position, transform.rotation);
     Destroy(gameObject);
     yield return new WaitForSeconds(deathTime);

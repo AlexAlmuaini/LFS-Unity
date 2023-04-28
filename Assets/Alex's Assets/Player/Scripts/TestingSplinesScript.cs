@@ -16,7 +16,7 @@ public class TestingSplinesScript : MonoBehaviour
     [SerializeField] private Transform pointABCD;
     private Vector3 positionInSpline;
     public bool splineCam, transition;
-    public float vertical1 = 0, vertical;
+    public float vertical1 = 0, vertical, tempIntAmo1,tempIntAmo2;
     public float vertical2 = 0, horizontal = 0;
     
     // Start is called before the first frame update
@@ -33,27 +33,46 @@ public class TestingSplinesScript : MonoBehaviour
         //inverse lerp to get the players x position in relation to the start and finish then devide it over the finish
         //to get the percentage for the interpolateAmount.
         
-        if(vertical1 != 1)
+        if(horizontal <= 0.35f)
         {
             vertical1 = InverseLerp(pointA.position, pointB.position, playerMovement.transform.position);
+            if(vertical1 <= 0.2f)
+            {
+                horizontal = 0;
+                tempIntAmo1 = 0;
+            }
+            else
+            {
+                tempIntAmo1 += Time.deltaTime * 0.1f;
+                if (tempIntAmo1 < InverseLerp(pointB.position, pointC.position, playerMovement.transform.position))
+                {horizontal = tempIntAmo1;}
+                else{horizontal = InverseLerp(pointB.position, pointC.position, playerMovement.transform.position);}
+            }
         }
-        else{vertical1 = 1;}
-        
-        horizontal = InverseLerp(pointB.position, pointC.position, playerMovement.transform.position);
+        else{vertical1 = 1;horizontal = InverseLerp(pointB.position, pointC.position, playerMovement.transform.position);}
 
         if (horizontal < 1)
         {
             vertical2 = 0;
         } 
         else
-        {
-            if(vertical2 != 1)
-        {
-            vertical2 = InverseLerp(pointC.position, pointD.position, playerMovement.transform.position);
+        {   
+            if (InverseLerp(pointC.position, pointD.position, playerMovement.transform.position) < 0)
+            {
+                vertical2 = 0;
+            }
+            if(vertical2 != 1 && InverseLerp(pointC.position, pointD.position, playerMovement.transform.position) > 0)
+            {
+                if(horizontal > 0.5f)
+                {
+                    tempIntAmo2 += Time.deltaTime * 0.1f;
+                    if (tempIntAmo2 < InverseLerp(pointC.position, pointD.position, playerMovement.transform.position))
+                    {vertical2 = tempIntAmo2;}
+                    else{vertical2 = InverseLerp(pointC.position, pointD.position, playerMovement.transform.position);} 
+                }
+            else{vertical2 = 1;}
+            }
         }
-        else{vertical2 = 1;}
-        }
-        
         interpolateAmount = horizontal/2 + vertical1/4 + vertical2/4;
         //Interpolates between 4 points using 2 functions, the first interpolates a-b & b-c and then interpolates between them
         // to get a-b-c then interpolates between a-b-c & b-c-d

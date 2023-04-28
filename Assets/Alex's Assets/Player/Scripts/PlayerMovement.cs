@@ -9,16 +9,19 @@ public class PlayerMovement : MonoBehaviour
     GameObject jumpParticles;
     GameObject speedParticles;
     GameObject slashParticles;
-    GameObject slashParticles2;
+    GameObject slashParticles2, pointer1;
     DoubleJumpManager doubleJumpManager;
     SpeedBoostManager speedBoostManager;
-    public Vector3 moveDirection;
-    Transform cameraObject, enemy;
+    public Vector3 moveDirection, enemyPos;
+    [SerializeField] GameObject pointer;
+    Transform cameraObject;
     Rigidbody playerRigidbody;
+    public GameObject[] enemies;
+    GameObject enemy;
 
     public float movementSpeed, jumpHeight, inAirTimer = 0;
-    public float rotationSpeed = 15, attackDelay = 0.0f, jumps, speedBoostMultiplier = 1, kills = 0, punchInt;
-    public bool isJumping, isGrounded, canJump, followCam, attacking;
+    public float rotationSpeed = 15, attackDelay = 0.0f, jumps, speedBoostMultiplier = 1, kills = 0, punchInt, dist,detectionRad = 200;
+    public bool isJumping, isGrounded, canJump, followCam, attacking,lockOnCamera, doubleJump;
     private float speed;
 
     private void Awake()
@@ -31,10 +34,38 @@ public class PlayerMovement : MonoBehaviour
         jumpParticles = GameObject.Find("CloudParticals");
         slashParticles = GameObject.Find("SlashParticles");
         slashParticles2 = GameObject.Find("SlashParticles2");
+        pointer = GameObject.Find("Pointer");
         cameraObject = Camera.main.transform;
         followCam = true;
+        jumpParticles.SetActive(false);
         speed = movementSpeed;
     }
+    private void EnemyDectection()
+   {    
+    enemies = GameObject.FindGameObjectsWithTag("Enemy");
+    
+    if(enemies.Length > 0)
+    {
+        enemy = GameObject.FindGameObjectWithTag("Enemy");
+        enemyPos = enemy.transform.position;
+        dist = Vector3.Distance(enemyPos, transform.position);
+
+        if(dist <= detectionRad && inputManager.lockOnCam != 0)
+            {
+                pointer.transform.position = enemyPos - Vector3.down * 2;
+                pointer.SetActive(true);
+                lockOnCamera = true;
+                followCam = false;
+            }
+        else
+            {
+                pointer.SetActive(false);
+                lockOnCamera = false;
+                followCam = true;
+            }
+    }
+    else{pointer.SetActive(false);lockOnCamera = false;followCam = true;}
+   }
 
    private void HandleMovement()
    {
@@ -106,6 +137,7 @@ public void HandleAllMovement()
         HandleMovement();
         HandleRoation();
         HandleFalling();
+        EnemyDectection();
    }
 public void HandleAttack()
 {
@@ -129,13 +161,22 @@ public void HandleJump()
         if(canJump == true)
             {
                 animator.SetBool("isJumping",true);
-                playerRigidbody.AddForce(transform.up * jumpHeight * 1.5f, ForceMode.Impulse);
+                playerRigidbody.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
                 isJumping = true;
-                if(doubleJumpManager.canDoubleJump == true)
+                if(doubleJumpManager == null)
+                {
+                    doubleJump = true;
+                }
+                else
+                {
+                    doubleJump = doubleJumpManager.canDoubleJump;
+                }
+                
+                if(doubleJump == true)
                 {
                     if(jumps == 1)
                     {
-                        playerRigidbody.AddForce(transform.up * jumpHeight, ForceMode.Impulse);
+                        playerRigidbody.AddForce(transform.up * jumpHeight * .75f, ForceMode.Impulse);
                         animator.Play("Base Layer.Jump",0,0);
                         jumpParticles.SetActive(true);
                     }
@@ -172,6 +213,7 @@ public void HandleJump()
             if (globalStuff.double_jump == true)
                 {
                     jumps = 2;
+                    jumpParticles.SetActive(false);
                 }
 
             }   
