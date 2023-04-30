@@ -9,6 +9,7 @@ public class DoorBehaviour : MonoBehaviour
     PlayerMovement playerMovement;
     [SerializeField] GameObject door;
     public bool doorOpening = false;
+    public float kills_for_scene;
     void Awake()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
@@ -16,7 +17,7 @@ public class DoorBehaviour : MonoBehaviour
 
     void Update()
     {
-        if(playerMovement.kills >= 4)
+        if(playerMovement.kills >= kills_for_scene)
         {StartCoroutine(EOpen());}
     }
     public void DoorOpen()
