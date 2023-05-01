@@ -7277,6 +7277,7 @@ MonoBehaviour:
   interpolateAmount: 0
   door: {fileID: 1260826746}
   doorOpening: 0
+  kills_for_scene: 4
 --- !u!4 &1874363627
 Transform:
   m_ObjectHideFlags: 0

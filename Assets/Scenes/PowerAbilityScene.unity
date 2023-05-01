@@ -1394,6 +1394,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2742468540895409613, guid: e7640da076f11c244a2118c80c58c308,
+        type: 3}
+      propertyPath: kills
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 3084505368843999944, guid: e7640da076f11c244a2118c80c58c308,
         type: 3}
       propertyPath: m_Name
@@ -2734,6 +2739,7 @@ MonoBehaviour:
   interpolateAmount: 0
   door: {fileID: 1807412786}
   doorOpening: 0
+  kills_for_scene: 0
 --- !u!1001 &1828817364
 PrefabInstance:
   m_ObjectHideFlags: 0
