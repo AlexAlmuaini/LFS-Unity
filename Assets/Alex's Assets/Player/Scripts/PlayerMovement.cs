@@ -24,6 +24,11 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping, isGrounded, canJump, followCam, attacking,lockOnCamera, doubleJump;
     private float speed;
 
+    [SerializeField] PlayerHealth playerHealth;
+    [SerializeField] GameObject hurtParticles;
+    private GameObject hurtInstance;
+
+
     private void Awake()
     {
         // THIS IS HOW TO FIX NULL OBJECT ERROR ~ ALEX PLEASE REMEMBER THIS
@@ -223,4 +228,25 @@ public void HandleJump()
     isGrounded = false;
     jumps--;
    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            Debug.Log("collision");
+            playerHealth.TakeDamage(5);
+            StartCoroutine(BleedParticles());
+            this.GetComponent<Rigidbody>().AddForce(transform.up * 10000);
+            this.GetComponent<Rigidbody>().AddForce(transform.forward * -15000);
+            
+
+        }
+    }
+
+    IEnumerator BleedParticles()
+    {
+        hurtInstance = Instantiate(hurtParticles, transform.position, transform.rotation);
+        yield return new WaitForSeconds(1.0F);
+        Destroy(hurtInstance);
+    }
 }
