@@ -453,7 +453,7 @@ PrefabInstance:
     - target: {fileID: 5126412001017546049, guid: 3c323252fd5d6c44a926e0943c3d55b0,
         type: 3}
       propertyPath: m_Name
-      value: GameObject
+      value: Room
       objectReference: {fileID: 0}
     - target: {fileID: 5168371728088890429, guid: 3c323252fd5d6c44a926e0943c3d55b0,
         type: 3}
@@ -1425,6 +1425,16 @@ PrefabInstance:
         type: 3}
       propertyPath: kills
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028336900826753836, guid: e7640da076f11c244a2118c80c58c308,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3028336900826753836, guid: e7640da076f11c244a2118c80c58c308,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3084505368843999944, guid: e7640da076f11c244a2118c80c58c308,
         type: 3}
