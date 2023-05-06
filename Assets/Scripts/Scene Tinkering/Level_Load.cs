@@ -7,10 +7,15 @@ public class Level_Load : MonoBehaviour
 {
     public bool next;
     public int sceneNumber;
-    public GameObject Player;
+    GameObject player;
+
+    private void Awake()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if(other = Player.GetComponent<Collider>())
+        if(other == player.GetComponent<Collider>())
         {
             globalStuff.door_passed = true;
             globalStuff.door_number = SceneManager.GetActiveScene().buildIndex;
