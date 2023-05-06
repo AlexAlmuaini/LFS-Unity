@@ -1339,6 +1339,18 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 801932962, guid: e7640da076f11c244a2118c80c58c308, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 801932962, guid: e7640da076f11c244a2118c80c58c308, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1038669332, guid: e7640da076f11c244a2118c80c58c308, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2415492798347935858, guid: e7640da076f11c244a2118c80c58c308,
         type: 3}
       propertyPath: m_RootOrder
@@ -1394,6 +1406,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2604886305006202361, guid: e7640da076f11c244a2118c80c58c308,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2604886306410416132, guid: e7640da076f11c244a2118c80c58c308,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2604886306410416132, guid: e7640da076f11c244a2118c80c58c308,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2742468540895409613, guid: e7640da076f11c244a2118c80c58c308,
         type: 3}
       propertyPath: kills
@@ -1414,7 +1441,8 @@ PrefabInstance:
       propertyPath: door_spawn.Array.data[6]
       value: 
       objectReference: {fileID: 84357540}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2604886305006202361, guid: e7640da076f11c244a2118c80c58c308, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: e7640da076f11c244a2118c80c58c308, type: 3}
 --- !u!1001 &930557367
