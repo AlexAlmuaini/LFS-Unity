@@ -7,8 +7,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Transform Player;
     [SerializeField] private Transform respawnPoint;
 
-    public int maxHealth = 100;
-    public int currentHealth;
+    public static int maxHealth = 100;
+    public static int currentHealth;
 
     public HealthBar healthBar;
     // Start is called before the first frame update
