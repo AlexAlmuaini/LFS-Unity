@@ -5196,6 +5196,11 @@ PrefabInstance:
       propertyPath: respawnPoint
       value: 
       objectReference: {fileID: 514936233}
+    - target: {fileID: 2302646720087065186, guid: e7640da076f11c244a2118c80c58c308,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.159
+      objectReference: {fileID: 0}
     - target: {fileID: 2415492798347935858, guid: e7640da076f11c244a2118c80c58c308,
         type: 3}
       propertyPath: m_RootOrder
@@ -5264,7 +5269,7 @@ PrefabInstance:
     - target: {fileID: 3028336899552939728, guid: e7640da076f11c244a2118c80c58c308,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -10.2
+      value: -12.3
       objectReference: {fileID: 0}
     - target: {fileID: 3084505368843999944, guid: e7640da076f11c244a2118c80c58c308,
         type: 3}
@@ -5276,7 +5281,9 @@ PrefabInstance:
       propertyPath: door_spawn.Array.data[4]
       value: 
       objectReference: {fileID: 1354905016}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1038669332, guid: e7640da076f11c244a2118c80c58c308, type: 3}
+    - {fileID: 3028336899552939729, guid: e7640da076f11c244a2118c80c58c308, type: 3}
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: e7640da076f11c244a2118c80c58c308, type: 3}
 --- !u!4 &793902099 stripped
