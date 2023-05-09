@@ -23,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
     public float rotationSpeed = 15, attackDelay = 0.0f, jumps, speedBoostMultiplier = 1, kills = 0, punchInt, dist,detectionRad = 200;
     public bool isJumping, isGrounded, canJump, followCam, attacking,lockOnCamera, doubleJump;
     private float speed;
-
     [SerializeField] PlayerHealth playerHealth;
     [SerializeField] GameObject hurtParticles;
     private GameObject hurtInstance;
@@ -34,16 +33,35 @@ public class PlayerMovement : MonoBehaviour
         // THIS IS HOW TO FIX NULL OBJECT ERROR ~ ALEX PLEASE REMEMBER THIS
         inputManager = GetComponent<InputManager>();
         doubleJumpManager = FindObjectOfType<DoubleJumpManager>();
+        speedBoostManager = FindObjectOfType<SpeedBoostManager>();
         playerRigidbody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         jumpParticles = GameObject.Find("CloudParticals");
         slashParticles = GameObject.Find("SlashParticles");
+        speedParticles = GameObject.Find("LighteningTrail");
         slashParticles2 = GameObject.Find("SlashParticles2");
         pointer = GameObject.Find("Pointer");
         cameraObject = Camera.main.transform;
         followCam = true;
         jumpParticles.SetActive(false);
+        speedParticles.SetActive(false);
         speed = movementSpeed;
+    }
+    private void Update()
+    {
+        if(speedBoostManager.SpeedBoostActive)
+        {
+            StartCoroutine(SpeedBoost());  
+        }
+    }
+    IEnumerator SpeedBoost()
+    {
+        speedParticles.SetActive(true);
+        speedBoostMultiplier = 2;
+        yield return new WaitForSeconds(3);
+        speedBoostManager.SpeedBoostActive = false;
+        speedBoostMultiplier = 1;
+        speedParticles.SetActive(false);
     }
     private void EnemyDectection()
    {    
@@ -231,7 +249,7 @@ public void HandleJump()
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.tag == "Enemy" && !attacking)
         {
             Debug.Log("collision");
             playerHealth.TakeDamage(5);

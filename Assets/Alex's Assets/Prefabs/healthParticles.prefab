@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7046089691938341255}
   - component: {fileID: 8776108244841737643}
   m_Layer: 0
-  m_Name: SmallSlimeDeathParticles
+  m_Name: healthParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &7046089691938341255
 ParticleSystem:
@@ -4830,7 +4830,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c0db2858e97e2894797697f0aac79260, type: 2}
+  - {fileID: 2100000, guid: 75d971c9e5f05f945a9b815a96d2dd2e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

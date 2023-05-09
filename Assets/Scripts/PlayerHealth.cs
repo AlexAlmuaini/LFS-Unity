@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private Transform respawnPoint;
 
     public static int maxHealth = 100;
-    public static int currentHealth;
+    public int currentHealth;
 
     public HealthBar healthBar;
     // Start is called before the first frame update
@@ -22,8 +22,6 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-
-        healthBar.SetHealth(currentHealth);
     }
 
     public void Update()
@@ -34,5 +32,6 @@ public class PlayerHealth : MonoBehaviour
             currentHealth = maxHealth;
             healthBar.SetHealth(maxHealth);
         }
+        else{healthBar.SetHealth(currentHealth);}
     }
 }

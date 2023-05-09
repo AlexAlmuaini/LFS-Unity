@@ -7,7 +7,7 @@ public class DoorBehaviour : MonoBehaviour
 {
     public float interpolateAmount;
     PlayerMovement playerMovement;
-    [SerializeField] GameObject door;
+    [SerializeField] GameObject door, doubleJump;
     public bool doorOpening = false;
     public float kills_for_scene;
     void Awake()
@@ -32,6 +32,10 @@ public class DoorBehaviour : MonoBehaviour
         playerMovement.followCam = false;
         playerMovement.lockOnCamera = false;
         doorOpening = true;
+        if(doubleJump != null)
+        {
+            doubleJump.SetActive(true);
+        }
         yield return new WaitForSeconds(0.50f);
         DoorOpen();
     }
