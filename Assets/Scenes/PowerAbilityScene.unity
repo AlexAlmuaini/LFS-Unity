@@ -3627,6 +3627,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1087698258596260712, guid: fd0e54862190513448640b3a6f47d033,
         type: 3}
+    - target: {fileID: 594598645296410465, guid: bc1941d57506f2d4fa9ce98eb3e8f060,
+        type: 3}
+      propertyPath: DoubleJumpAcquiredText
+      value: 
+      objectReference: {fileID: 938740635}
     - target: {fileID: 594598645296410469, guid: bc1941d57506f2d4fa9ce98eb3e8f060,
         type: 3}
       propertyPath: m_RootOrder

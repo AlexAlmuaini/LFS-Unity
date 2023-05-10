@@ -8,10 +8,12 @@ public class DoubleJumpManager : MonoBehaviour
     DoorBehaviour doorBehaviour;
     public bool canDoubleJump, canSpawn;
     [SerializeField] GameObject particles;
+    [SerializeField] GameObject DoubleJumpAcquiredText;
     
     // Start is called before the first frame update
     void Awake()
     {
+        DoubleJumpAcquiredText.SetActive(false);
         this.gameObject.SetActive(false);
         playerMovement = FindObjectOfType<PlayerMovement>();
         canDoubleJump = false;
@@ -20,6 +22,7 @@ public class DoubleJumpManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
+        DoubleJumpAcquiredText.SetActive(true);
         canDoubleJump = true;
         globalStuff.double_jump = true;
         particles.transform.position = this.gameObject.transform.position;
