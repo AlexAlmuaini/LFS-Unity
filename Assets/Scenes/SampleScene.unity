@@ -2591,18 +2591,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 765213529}
   m_CullTransparentMesh: 1
---- !u!114 &767599772 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3028336899552939758, guid: e7640da076f11c244a2118c80c58c308,
-    type: 3}
-  m_PrefabInstance: {fileID: 2742468541389837440}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e8fd1e8e1ee67f488c5ce7580e536b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &786448186
 GameObject:
   m_ObjectHideFlags: 0
@@ -8562,37 +8550,11 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 801932962, guid: e7640da076f11c244a2118c80c58c308, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 801932962, guid: e7640da076f11c244a2118c80c58c308, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1038669332, guid: e7640da076f11c244a2118c80c58c308, type: 3}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 1848559221}
-    - target: {fileID: 2017420127, guid: e7640da076f11c244a2118c80c58c308, type: 3}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 1848559221}
-    - target: {fileID: 543450652818445555, guid: e7640da076f11c244a2118c80c58c308,
-        type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 767599772}
     - target: {fileID: 543450652818445555, guid: e7640da076f11c244a2118c80c58c308,
         type: 3}
       propertyPath: respawnPoint
       value: 
       objectReference: {fileID: 748260908}
-    - target: {fileID: 2302646720087065186, guid: e7640da076f11c244a2118c80c58c308,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.217
-      objectReference: {fileID: 0}
     - target: {fileID: 2415492798347935858, guid: e7640da076f11c244a2118c80c58c308,
         type: 3}
       propertyPath: m_RootOrder
@@ -8648,21 +8610,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2742468540895409613, guid: e7640da076f11c244a2118c80c58c308,
-        type: 3}
-      propertyPath: kills
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3028336899552939728, guid: e7640da076f11c244a2118c80c58c308,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 3028336899552939728, guid: e7640da076f11c244a2118c80c58c308,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -9.7
-      objectReference: {fileID: 0}
     - target: {fileID: 3028336900826753836, guid: e7640da076f11c244a2118c80c58c308,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -8678,9 +8625,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1038669332, guid: e7640da076f11c244a2118c80c58c308, type: 3}
-    - {fileID: 3028336899552939729, guid: e7640da076f11c244a2118c80c58c308, type: 3}
+    m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: e7640da076f11c244a2118c80c58c308, type: 3}
 --- !u!1001 &4535558002034692360
