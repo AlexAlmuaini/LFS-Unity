@@ -60,12 +60,12 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7390320991489821959}
   - {fileID: 7390320991356068335}
   - {fileID: 7390320990639819742}
   - {fileID: 7390320991143898746}
+  - {fileID: 7390320991489821959}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7390320990848989427
 MonoBehaviour:
@@ -76,18 +76,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 7390320990848989426}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef99b991df0dd55408487b6e16d7a2f4, type: 3}
+  m_Script: {fileID: 11500000, guid: df0599b32b3dead4a8341a60f04bf846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interpolateAmount: 0
-  interpolateAmountX: 0
-  interpolateAmountZ: 0
+  transInterpolateAmount: 0
   pointA: {fileID: 7390320991489821959}
   pointB: {fileID: 7390320991356068335}
   pointC: {fileID: 7390320990639819742}
   pointD: {fileID: 7390320991143898746}
   pointABCD: {fileID: 0}
   splineCam: 0
+  transition: 0
+  vertical1: 0
+  vertical: 0
+  tempIntAmo1: 0
+  tempIntAmo2: 0
+  vertical2: 0
+  horizontal: 0
 --- !u!1 &7390320991143898745
 GameObject:
   m_ObjectHideFlags: 0

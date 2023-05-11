@@ -52,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-        if(speedBoostManager != null && speedBoostManager.SpeedBoostActive && speedParticles !=null)
+        if(speedBoostManager.SpeedBoostActive && speedParticles !=null)
         {
             StartCoroutine(SpeedBoost());  
         }
@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
     {
         speedParticles.SetActive(true);
         speedBoostMultiplier = 2;
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4.5f);
         speedBoostManager.SpeedBoostActive = false;
         speedBoostMultiplier = 1;
         speedParticles.SetActive(false);
