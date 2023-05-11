@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class KillboxLogic : MonoBehaviour
 {
@@ -25,6 +26,6 @@ public class KillboxLogic : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         death++;
-        playerMovement.transform.position = respawnPoint.position;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

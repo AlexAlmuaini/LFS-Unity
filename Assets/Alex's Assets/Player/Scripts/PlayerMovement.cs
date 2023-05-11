@@ -44,12 +44,15 @@ public class PlayerMovement : MonoBehaviour
         cameraObject = Camera.main.transform;
         followCam = true;
         jumpParticles.SetActive(false);
-        speedParticles.SetActive(false);
+        if(speedParticles != null)
+        {
+            speedParticles.SetActive(false);
+        }
         speed = movementSpeed;
     }
     private void Update()
     {
-        if(speedBoostManager.SpeedBoostActive)
+        if(speedBoostManager != null && speedBoostManager.SpeedBoostActive && speedParticles !=null)
         {
             StartCoroutine(SpeedBoost());  
         }
